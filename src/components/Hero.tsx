@@ -1,190 +1,117 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { Heart, Sparkles, ShieldCheck, ArrowRight, Phone, Star, Car, Scissors, Droplets } from 'lucide-react';
-import { BUSINESS_INFO, STATS_DATA } from '../data/mockData';
+import { ArrowRight, Sparkles, Gem, Scissors, Heart } from 'lucide-react';
 
 interface HeroProps {
-  onContactClick: () => void;
-  onExploreServices: () => void;
+  onShopClick: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onContactClick, onExploreServices }) => {
+export const Hero: React.FC<HeroProps> = ({ onShopClick }) => {
   return (
-    <section
-      id="inicio"
-      className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden paw-pattern"
-    >
-      {/* Decorative ambient gradients */}
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-tr from-[#E31837]/10 via-[#D4AF37]/15 to-transparent rounded-full blur-3xl pointer-events-none -z-10" />
-
+    <section id="inicio" className="bg-[#FAF8F5] pt-6 sm:pt-10 pb-12 sm:pb-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          {/* Column 1: Copywriting & CTAs (7 cols on desktop) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          {/* Column 1: Copywriting & Value Propositions (5 cols) */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
-            className="lg:col-span-7 flex flex-col justify-center"
+            className="lg:col-span-5 flex flex-col justify-center"
           >
-            {/* Clean unboxed kicker metadata with authentic pet shop trust signals */}
-            <div className="flex flex-wrap items-center gap-2 text-xs md:text-sm font-bold text-[#E31837] tracking-wider uppercase mb-4">
-              <span className="flex items-center gap-1.5">
-                <Sparkles className="w-4 h-4 text-[#D4AF37]" />
-                Pet Shop & Estética Canina e Felina
-              </span>
-              <span aria-hidden="true" className="text-[#D4AF37]">·</span>
-              <span>Centro de Cândido Mota - SP</span>
-            </div>
+            {/* Kicker */}
+            <span className="text-xs sm:text-sm font-semibold tracking-wider text-[#706763] uppercase mb-2">
+              Mais que Pets
+            </span>
 
-            {/* Giant Display Headline */}
-            <h1 className="font-fredoka text-[42px] sm:text-[56px] lg:text-[68px] xl:text-[76px] font-bold text-[#2C2424] leading-[1.06] tracking-tight mb-6 text-balance">
-              O amor que seu pet sente{' '}
-              <span className="text-[#E31837] relative inline-block">
-                no pelo
-                <svg
-                  className="absolute -bottom-2 left-0 w-full h-3 text-[#D4AF37]"
-                  viewBox="0 0 100 20"
-                  preserveAspectRatio="none"
-                  fill="currentColor"
-                >
-                  <path d="M0,15 Q50,0 100,15" stroke="currentColor" strokeWidth="4" fill="none" />
-                </svg>
-              </span>{' '}
-              e no coração.
+            {/* Giant Serif Display Headline */}
+            <h1 className="font-playfair text-[44px] sm:text-[58px] lg:text-[64px] font-bold text-[#1A1513] leading-[1.05] tracking-tight mb-5">
+              Eles são Família
             </h1>
 
-            {/* Subtitle / Value proposition */}
-            <p className="text-base sm:text-lg md:text-xl text-[#6B5E5E] leading-relaxed mb-8 max-w-2xl font-nunito">
-              Banho relaxante com água morninha e toalhas lacradas, tosa com tesouras suaves, consultório veterinário preventivo, rações nobres e o carinho que todo bichinho merece.
+            {/* Subtitle */}
+            <p className="text-sm sm:text-base text-[#574E49] leading-relaxed mb-8 max-w-md font-nunito">
+              Curadoria de luxo, nutrição nobre e carinho de verdade para aqueles que iluminam a sua vida todos os dias.
             </p>
 
-            {/* Pet Shop Quick Tags */}
-            <div className="flex flex-wrap gap-2.5 mb-8">
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#E31837]/20 text-xs font-bold text-[#2C2424] shadow-2xs">
-                <Car className="w-3.5 h-3.5 text-[#E31837]" />
-                <span>Táxi Dog Leva & Traz</span>
-              </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#D4AF37]/30 text-xs font-bold text-[#2C2424] shadow-2xs">
-                <Droplets className="w-3.5 h-3.5 text-[#D4AF37]" />
-                <span>Banho c/ Água Morna</span>
-              </div>
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-[#E31837]/20 text-xs font-bold text-[#2C2424] shadow-2xs">
-                <Scissors className="w-3.5 h-3.5 text-[#E31837]" />
-                <span>Tosa na Tesoura sem Estresse</span>
-              </div>
-            </div>
-
-            {/* Action buttons */}
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-10">
+            {/* CTA Button (Matching the dark button in the reference image) */}
+            <div className="mb-10">
               <button
-                onClick={onContactClick}
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 text-base font-bold text-white bg-[#E31837] hover:bg-[#C5112D] active:bg-[#A80B22] rounded-2xl shadow-lg shadow-[#E31837]/25 hover:shadow-xl hover:shadow-[#E31837]/35 transition-all duration-200 transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#E31837]"
+                onClick={onShopClick}
+                className="inline-flex items-center gap-3 px-7 py-3.5 text-xs sm:text-sm font-bold text-white bg-[#1A1513] hover:bg-[#C5A059] active:bg-[#9E7D39] rounded-md transition-all duration-200 transform hover:-translate-y-0.5 shadow-md group"
               >
-                <Phone className="w-5 h-5" />
-                <span>Entrar em contato</span>
-              </button>
-
-              <button
-                onClick={onExploreServices}
-                className="inline-flex items-center justify-center gap-2 px-7 py-4 text-base font-bold text-[#2C2424] bg-white hover:bg-[#FAF6F0] border-2 border-[#D4AF37]/40 hover:border-[#D4AF37] rounded-2xl shadow-xs transition-all duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D4AF37]"
-              >
-                <span>Ver Serviços & Simulador</span>
-                <ArrowRight className="w-4 h-4 text-[#D4AF37]" />
+                <span>Conferir a Coleção</span>
+                <ArrowRight className="w-4 h-4 text-white/80 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
 
-            {/* Proof indicators inline */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 border-t border-[#E31837]/10">
-              <div className="flex flex-col">
-                <span className="font-fredoka text-2xl sm:text-3xl font-bold text-[#2C2424] tabular-nums">
-                  +4.800
-                </span>
-                <span className="text-xs text-[#6B5E5E] font-medium">Banhos & cuidados com amor</span>
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-1 font-fredoka text-2xl sm:text-3xl font-bold text-[#D4AF37] tabular-nums">
-                  <span>4.9</span>
-                  <Star className="w-5 h-5 fill-current text-[#D4AF37]" />
+            {/* 3 Trust Signals Icons below CTA */}
+            <div className="flex items-center gap-6 sm:gap-8 pt-6 border-t border-[#E5DFD9]">
+              <div className="flex flex-col items-start gap-1">
+                <div className="w-8 h-8 rounded-full bg-[#F5F1EB] text-[#C5A059] flex items-center justify-center">
+                  <Gem className="w-4 h-4" />
                 </div>
-                <span className="text-xs text-[#6B5E5E] font-medium">Avaliações de tutores de CM</span>
+                <span className="text-[11px] font-bold text-[#1A1513]">Qualidade Premium</span>
               </div>
-              <div className="flex flex-col col-span-2 sm:col-span-1">
-                <span className="font-fredoka text-2xl sm:text-3xl font-bold text-[#E31837] tabular-nums">
-                  100%
-                </span>
-                <span className="text-xs text-[#6B5E5E] font-medium">Toalhas limpas e esterilizadas</span>
+
+              <div className="flex flex-col items-start gap-1">
+                <div className="w-8 h-8 rounded-full bg-[#F5F1EB] text-[#C5A059] flex items-center justify-center">
+                  <Scissors className="w-4 h-4" />
+                </div>
+                <span className="text-[11px] font-bold text-[#1A1513]">Design Cuidadoso</span>
+              </div>
+
+              <div className="flex flex-col items-start gap-1">
+                <div className="w-8 h-8 rounded-full bg-[#F5F1EB] text-[#C5A059] flex items-center justify-center">
+                  <Heart className="w-4 h-4" />
+                </div>
+                <span className="text-[11px] font-bold text-[#1A1513]">Pets Mais Felizes</span>
               </div>
             </div>
           </motion.div>
 
-          {/* Column 2: Media Asset with Realistic Pet Photo & Badges (5 cols on desktop) */}
+          {/* Column 2: Big Visual Asset (7 cols) - Exact match to reference photo */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.15, ease: 'easeOut' }}
-            className="lg:col-span-5 relative"
+            className="lg:col-span-7 relative"
           >
-            <div className="relative mx-auto max-w-[500px] lg:max-w-none">
-              {/* Backing shape */}
-              <div className="absolute -inset-3 bg-gradient-to-tr from-[#E31837]/20 via-[#D4AF37]/20 to-transparent rounded-[2.5rem] transform rotate-2 blur-xs -z-10" />
+            <div className="relative rounded-2xl overflow-hidden shadow-xl border border-[#E5DFD9] bg-white group">
+              <img
+                src="/src/assets/images/dupet_luxury_hero_family_1790954018577.jpg"
+                alt="Golden Retriever de gravata borboleta e gatinho persa em caminha de luxo na Dupet Pet Shop"
+                className="w-full h-[360px] sm:h-[460px] lg:h-[500px] object-cover object-center group-hover:scale-102 transition-transform duration-700"
+                referrerPolicy="no-referrer"
+              />
 
-              {/* Main Realistic Image Container */}
-              <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border-4 border-white bg-white">
-                <img
-                  src="/src/assets/images/dupet_real_hero_dog_1790943537133.jpg"
-                  alt="Cachorro feliz atendido com carinho na loja da Dupet Pet Shop em Cândido Mota"
-                  className="w-full h-[420px] sm:h-[480px] lg:h-[500px] object-cover object-center transform hover:scale-102 transition-transform duration-500"
-                  referrerPolicy="no-referrer"
-                />
+              {/* Ambient overlay subtle gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent pointer-events-none" />
 
-                {/* Subtle gradient overlay at bottom */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent pointer-events-none" />
-
-                {/* Bottom live status inside photo */}
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="text-xs font-bold drop-shadow-md">
-                      Equipe Atendendo com Carinho Agora
-                    </span>
-                  </div>
-                  <span className="text-xs font-semibold text-[#D4AF37] drop-shadow-md">
-                    Cândido Mota
-                  </span>
-                </div>
+              {/* Top right wall art text badge matching reference */}
+              <div className="absolute top-4 right-4 bg-[#F2EDE6]/90 backdrop-blur-xs px-3.5 py-2.5 rounded-lg border border-[#D5CCC3] text-right shadow-xs">
+                <p className="font-playfair text-[10px] tracking-[0.2em] font-bold text-[#3D3531] uppercase">
+                  Bons Pets
+                </p>
+                <p className="font-playfair text-[10px] tracking-[0.2em] font-bold text-[#C5A059] uppercase">
+                  Pessoas Mais
+                </p>
+                <p className="font-playfair text-[10px] tracking-[0.2em] font-bold text-[#3D3531] uppercase">
+                  Felizes
+                </p>
               </div>
 
-              {/* Floating Badge 1: Banho com Espuminha & Ozônio */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="absolute -top-4 -left-4 sm:-left-6 bg-white/95 backdrop-blur-md px-4 py-3 rounded-2xl shadow-xl border border-[#D4AF37]/40 flex items-center gap-3"
-              >
-                <div className="w-10 h-10 rounded-xl bg-[#FDF9EA] text-[#D4AF37] flex items-center justify-center">
-                  <Droplets className="w-5 h-5" />
+              {/* Bottom pet quote banner matching reference */}
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white/95 text-xs">
+                <div className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059] animate-pulse"></span>
+                  <span className="font-playfair tracking-wider uppercase text-[11px] drop-shadow-sm">
+                    Um mundo mais feliz para quem tem patinhas
+                  </span>
                 </div>
-                <div>
-                  <p className="text-xs font-bold text-[#2C2424]">Banho c/ Água Quentinha</p>
-                  <p className="text-[11px] text-[#6B5E5E]">Shampoo neutro & toalha lacrada</p>
-                </div>
-              </motion.div>
-
-              {/* Floating Badge 2: Táxi Dog Leva & Traz */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="absolute -bottom-5 -right-3 sm:-right-4 bg-white/95 backdrop-blur-md px-4 py-3 rounded-2xl shadow-xl border border-[#E31837]/25 flex items-center gap-3"
-              >
-                <div className="w-10 h-10 rounded-xl bg-[#FDE8EB] text-[#E31837] flex items-center justify-center">
-                  <Car className="w-5 h-5" />
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-[#2C2424]">Táxi Dog Dupet</p>
-                  <p className="text-[11px] text-[#6B5E5E]">Buscamos e levamos em casa</p>
-                </div>
-              </motion.div>
+                <span className="hidden sm:inline text-[10px] tracking-widest text-[#E5DFD9] uppercase font-bold">
+                  Dupet Boutique
+                </span>
+              </div>
             </div>
           </motion.div>
         </div>

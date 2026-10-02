@@ -1,29 +1,17 @@
-export interface Service {
-  id: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  duration: string;
-  priceFrom: string;
-  features: string[];
-  image?: string;
-  badge?: string;
-}
-
 export interface Product {
   id: string;
   name: string;
-  category: 'racao' | 'petiscos' | 'brinquedos' | 'farmacia' | 'higiene';
+  category: string;
   categoryLabel: string;
   price: number;
   originalPrice?: number;
-  weightOrVolume?: string;
-  description: string;
   rating: number;
   reviewsCount: number;
-  inStock: boolean;
   image: string;
-  highlight?: string;
+  isNew?: boolean;
+  isBestSeller?: boolean;
+  badge?: string;
+  description?: string;
 }
 
 export interface CartItem {
@@ -31,24 +19,17 @@ export interface CartItem {
   quantity: number;
 }
 
-export interface Testimonial {
+export interface CategoryItem {
   id: string;
-  tutorName: string;
-  petName: string;
-  petBreed: string;
-  avatar: string;
-  rating: number;
-  comment: string;
-  serviceUsed: string;
-  date: string;
+  name: string;
+  image: string;
 }
 
-export interface GalleryItem {
+export interface Testimonial {
   id: string;
-  title: string;
-  petName: string;
-  breed: string;
-  category: 'banho' | 'tosa' | 'spa' | 'felinos';
-  image: string;
-  description: string;
+  quote: string;
+  author: string;
+  role?: string;
+  avatar: string;
+  rating: number;
 }
