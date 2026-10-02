@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2 } from 'lucide-react';
+import { CheckCircle2 } from 'lucide-react';
+import cuddlePetsImg from '../assets/images/dupet_cuddle_sleep_pets_1790954047568.jpg';
 
 export const NewsletterClub: React.FC = () => {
   const [emailOrPhone, setEmailOrPhone] = useState('');
@@ -19,9 +20,12 @@ export const NewsletterClub: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left: Sleeping Cuddled Pets photo (4 cols) */}
           <div className="lg:col-span-4 flex justify-center lg:justify-start">
-            <div className="w-full max-w-sm rounded-2xl overflow-hidden shadow-lg border border-[#E0D8D0] bg-white">
+            <div className="w-full max-w-sm rounded-2xl overflow-hidden shadow-lg border border-[#E0D8D0] bg-white min-h-[224px]">
               <img
-                src="/src/assets/images/dupet_cuddle_sleep_pets_1790954047568.jpg"
+                src={cuddlePetsImg}
+                onError={(e) => {
+                  e.currentTarget.src = '/assets/images/dupet_cuddle_sleep_pets_1790954047568.jpg';
+                }}
                 alt="Filhote de cachorro e gatinho dormindo abraçados na Dupet"
                 className="w-full h-56 object-cover"
                 referrerPolicy="no-referrer"
@@ -55,7 +59,7 @@ export const NewsletterClub: React.FC = () => {
                 />
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-[#1A1513] hover:bg-[#C5A059] text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-colors shadow-sm"
+                  className="px-6 py-3 bg-[#1A1513] hover:bg-[#C5A059] text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-colors shadow-sm cursor-pointer"
                 >
                   Cadastrar
                 </button>

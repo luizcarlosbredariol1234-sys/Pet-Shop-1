@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArrowRight, Sparkles } from 'lucide-react';
-import { BUSINESS_INFO } from '../data/mockData';
+import heritagePlaidImg from '../assets/images/dupet_heritage_plaid_pets_1790954033131.jpg';
 
 interface HeritageBannerProps {
   onExploreClick: () => void;
@@ -13,9 +13,12 @@ export const HeritageBanner: React.FC<HeritageBannerProps> = ({ onExploreClick }
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Left Media Asset: Dog & Cat in Plaid Sweaters (6 cols) */}
           <div className="lg:col-span-6 relative">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-white/10 group min-h-[320px] bg-[#26201D]">
               <img
-                src="/src/assets/images/dupet_heritage_plaid_pets_1790954033131.jpg"
+                src={heritagePlaidImg}
+                onError={(e) => {
+                  e.currentTarget.src = '/assets/images/dupet_heritage_plaid_pets_1790954033131.jpg';
+                }}
                 alt="Cachorro e gato usando roupinhas xadrez da Coleção Heritage Dupet"
                 className="w-full h-[320px] sm:h-[400px] object-cover group-hover:scale-103 transition-transform duration-700"
                 referrerPolicy="no-referrer"
@@ -54,7 +57,7 @@ export const HeritageBanner: React.FC<HeritageBannerProps> = ({ onExploreClick }
 
             <button
               onClick={onExploreClick}
-              className="inline-flex items-center gap-3 px-8 py-3.5 text-xs sm:text-sm font-bold text-[#1A1513] bg-white hover:bg-[#C5A059] hover:text-white rounded-md transition-all duration-200 transform hover:-translate-y-0.5 shadow-lg group"
+              className="inline-flex items-center gap-3 px-8 py-3.5 text-xs sm:text-sm font-bold text-[#1A1513] bg-white hover:bg-[#C5A059] hover:text-white rounded-md transition-all duration-200 transform hover:-translate-y-0.5 shadow-lg group cursor-pointer"
             >
               <span>Conferir Edição Limitada</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

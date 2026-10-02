@@ -17,7 +17,7 @@ export const ShopByCategory: React.FC<ShopByCategoryProps> = ({ onSelectCategory
           </h2>
           <button
             onClick={() => onSelectCategory('todos')}
-            className="flex items-center gap-1.5 text-xs font-bold text-[#706763] hover:text-[#C5A059] transition-colors group focus:outline-none"
+            className="flex items-center gap-1.5 text-xs font-bold text-[#706763] hover:text-[#C5A059] transition-colors group focus:outline-none cursor-pointer"
           >
             <span>Ver Tudo</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -33,10 +33,13 @@ export const ShopByCategory: React.FC<ShopByCategoryProps> = ({ onSelectCategory
               className="flex flex-col items-center text-center group cursor-pointer focus:outline-none"
             >
               {/* Circular image with warm beige background container */}
-              <div className="w-18 h-18 sm:w-20 sm:h-20 lg:w-22 lg:h-22 rounded-full overflow-hidden bg-[#FAF6F0] p-1 border-2 border-transparent group-hover:border-[#C5A059] transition-all duration-300 shadow-2xs group-hover:shadow-md mb-2.5">
+              <div className="w-18 h-18 sm:w-20 sm:h-20 lg:w-22 lg:h-22 rounded-full overflow-hidden bg-[#FAF6F0] p-1 border-2 border-transparent group-hover:border-[#C5A059] transition-all duration-300 shadow-2xs group-hover:shadow-md mb-2.5 flex items-center justify-center">
                 <img
                   src={cat.image}
                   alt={cat.name}
+                  onError={(e) => {
+                    e.currentTarget.style.display = 'none';
+                  }}
                   className="w-full h-full object-cover rounded-full group-hover:scale-108 transition-transform duration-300"
                   referrerPolicy="no-referrer"
                 />

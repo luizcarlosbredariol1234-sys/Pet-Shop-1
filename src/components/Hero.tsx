@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Sparkles, Gem, Scissors, Heart } from 'lucide-react';
+import heroFamilyImg from '../assets/images/dupet_luxury_hero_family_1790954018577.jpg';
 
 interface HeroProps {
   onShopClick: () => void;
@@ -33,11 +34,11 @@ export const Hero: React.FC<HeroProps> = ({ onShopClick }) => {
               Curadoria de luxo, nutrição nobre e carinho de verdade para aqueles que iluminam a sua vida todos os dias.
             </p>
 
-            {/* CTA Button (Matching the dark button in the reference image) */}
+            {/* CTA Button */}
             <div className="mb-10">
               <button
                 onClick={onShopClick}
-                className="inline-flex items-center gap-3 px-7 py-3.5 text-xs sm:text-sm font-bold text-white bg-[#1A1513] hover:bg-[#C5A059] active:bg-[#9E7D39] rounded-md transition-all duration-200 transform hover:-translate-y-0.5 shadow-md group"
+                className="inline-flex items-center gap-3 px-7 py-3.5 text-xs sm:text-sm font-bold text-white bg-[#1A1513] hover:bg-[#C5A059] active:bg-[#9E7D39] rounded-md transition-all duration-200 transform hover:-translate-y-0.5 shadow-md group cursor-pointer"
               >
                 <span>Conferir a Coleção</span>
                 <ArrowRight className="w-4 h-4 text-white/80 group-hover:translate-x-1 transition-transform" />
@@ -69,16 +70,19 @@ export const Hero: React.FC<HeroProps> = ({ onShopClick }) => {
             </div>
           </motion.div>
 
-          {/* Column 2: Big Visual Asset (7 cols) - Exact match to reference photo */}
+          {/* Column 2: Big Visual Asset (7 cols) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.15, ease: 'easeOut' }}
             className="lg:col-span-7 relative"
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-xl border border-[#E5DFD9] bg-white group">
+            <div className="relative rounded-2xl overflow-hidden shadow-xl border border-[#E5DFD9] bg-white group min-h-[360px]">
               <img
-                src="/src/assets/images/dupet_luxury_hero_family_1790954018577.jpg"
+                src={heroFamilyImg}
+                onError={(e) => {
+                  e.currentTarget.src = '/assets/images/dupet_luxury_hero_family_1790954018577.jpg';
+                }}
                 alt="Golden Retriever de gravata borboleta e gatinho persa em caminha de luxo na Dupet Pet Shop"
                 className="w-full h-[360px] sm:h-[460px] lg:h-[500px] object-cover object-center group-hover:scale-102 transition-transform duration-700"
                 referrerPolicy="no-referrer"

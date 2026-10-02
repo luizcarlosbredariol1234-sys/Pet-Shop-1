@@ -39,7 +39,7 @@ export const ProductShelf: React.FC<ProductShelfProps> = ({
 
           <button
             onClick={onViewAllClick}
-            className="flex items-center gap-1.5 text-xs font-bold text-[#706763] hover:text-[#C5A059] transition-colors group self-start sm:self-auto focus:outline-none"
+            className="flex items-center gap-1.5 text-xs font-bold text-[#706763] hover:text-[#C5A059] transition-colors group self-start sm:self-auto focus:outline-none cursor-pointer"
           >
             <span>Ver Tudo</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -74,7 +74,7 @@ export const ProductShelf: React.FC<ProductShelfProps> = ({
                   <button
                     onClick={() => onToggleWishlist(product.id)}
                     aria-label={isFav ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
-                    className="p-1 text-[#A89E99] hover:text-red-500 transition-colors focus:outline-none"
+                    className="p-1 text-[#A89E99] hover:text-red-500 transition-colors focus:outline-none cursor-pointer"
                   >
                     <Heart
                       className={`w-4 h-4 ${
@@ -121,7 +121,7 @@ export const ProductShelf: React.FC<ProductShelfProps> = ({
                     <button
                       onClick={() => onAddToCart(product)}
                       aria-label="Adicionar à sacola"
-                      className="w-8 h-8 rounded-lg bg-[#1A1513] hover:bg-[#C5A059] active:bg-[#9E7D39] text-white flex items-center justify-center transition-colors shadow-xs"
+                      className="w-8 h-8 rounded-lg bg-[#1A1513] hover:bg-[#C5A059] active:bg-[#9E7D39] text-white flex items-center justify-center transition-colors shadow-xs cursor-pointer"
                     >
                       <ShoppingBag className="w-3.5 h-3.5" />
                     </button>

@@ -1,5 +1,16 @@
 import { Product, CategoryItem, Testimonial } from '../types';
 
+// Direct Vite asset imports - guaranteed to resolve in dev, prod, and preview builds
+import realHeroDog from '../assets/images/dupet_real_hero_dog_1790943537133.jpg';
+import serviceVet from '../assets/images/dupet_service_vet_1790943189048.jpg';
+import realTaxiDog from '../assets/images/dupet_real_taxi_dog_1790943589484.jpg';
+import prodBed from '../assets/images/dupet_prod_bed_1790954064241.jpg';
+import prodBowls from '../assets/images/dupet_prod_bowls_1790954094590.jpg';
+import prodHarness from '../assets/images/dupet_prod_harness_1790954080246.jpg';
+import realBathGrooming from '../assets/images/dupet_real_bath_grooming_1790943549692.jpg';
+import prodCarrier from '../assets/images/dupet_prod_carrier_1790954107721.jpg';
+import prodTreats from '../assets/images/dupet_product_treats_1790943198374.jpg';
+
 export const BUSINESS_INFO = {
   name: 'Dupet',
   fullName: 'Dupet - Boutique & Pet Care',
@@ -17,47 +28,47 @@ export const CATEGORIES_DATA: CategoryItem[] = [
   {
     id: 'caes',
     name: 'Cães Essenciais',
-    image: '/src/assets/images/dupet_real_hero_dog_1790943537133.jpg',
+    image: realHeroDog,
   },
   {
     id: 'gatos',
     name: 'Mimos para Gatos',
-    image: '/src/assets/images/dupet_service_vet_1790943189048.jpg',
+    image: serviceVet,
   },
   {
     id: 'pequenos',
     name: 'Pequenos Pets',
-    image: '/src/assets/images/dupet_real_taxi_dog_1790943589484.jpg',
+    image: realTaxiDog,
   },
   {
     id: 'camas',
     name: 'Camas & Móveis',
-    image: '/src/assets/images/dupet_prod_bed_1790954064241.jpg',
+    image: prodBed,
   },
   {
     id: 'comedouros',
     name: 'Comedouros & Tigelas',
-    image: '/src/assets/images/dupet_prod_bowls_1790954094590.jpg',
+    image: prodBowls,
   },
   {
     id: 'moda',
     name: 'Moda & Coleiras',
-    image: '/src/assets/images/dupet_prod_harness_1790954080246.jpg',
+    image: prodHarness,
   },
   {
     id: 'banho',
     name: 'Banho & Cuidados',
-    image: '/src/assets/images/dupet_real_bath_grooming_1790943549692.jpg',
+    image: realBathGrooming,
   },
   {
     id: 'viagem',
     name: 'Passeio & Viagem',
-    image: '/src/assets/images/dupet_prod_carrier_1790954107721.jpg',
+    image: prodCarrier,
   },
   {
     id: 'kits',
     name: 'Kits & Presentes',
-    image: '/src/assets/images/dupet_product_treats_1790943198374.jpg',
+    image: prodTreats,
   },
 ];
 
@@ -71,7 +82,7 @@ export const NEW_ARRIVALS: Product[] = [
     originalPrice: 220.00,
     rating: 5.0,
     reviewsCount: 24,
-    image: '/src/assets/images/dupet_prod_bed_1790954064241.jpg',
+    image: prodBed,
     isNew: true,
     description: 'Pelúcia hipoalergênica soft ultra macia, base antiderrapante e enchimento viscoelástico que acolhe as articulações.',
   },
@@ -83,7 +94,7 @@ export const NEW_ARRIVALS: Product[] = [
     price: 98.00,
     rating: 4.9,
     reviewsCount: 18,
-    image: '/src/assets/images/dupet_prod_harness_1790954080246.jpg',
+    image: prodHarness,
     isNew: true,
     description: 'Tecido respirável acolchoado com fivelas de alta precisão em latão dourado e ajuste anatômico sem puxar o pescoço.',
   },
@@ -95,7 +106,7 @@ export const NEW_ARRIVALS: Product[] = [
     price: 79.00,
     rating: 4.8,
     reviewsCount: 32,
-    image: '/src/assets/images/dupet_prod_bowls_1790954094590.jpg',
+    image: prodBowls,
     description: 'Cerâmica esmaltada de alta densidade com base em madeira nobre. Altura recomendada por veterinários para evitar refluxo.',
   },
   {
@@ -106,7 +117,7 @@ export const NEW_ARRIVALS: Product[] = [
     price: 38.00,
     rating: 4.7,
     reviewsCount: 27,
-    image: '/src/assets/images/dupet_product_treats_1790943198374.jpg',
+    image: prodTreats,
     description: 'Costura reforçada dupla em algodão ecológico macio. Estimula a cognição e alivia o tédio com textura agradável.',
   },
   {
@@ -118,7 +129,7 @@ export const NEW_ARRIVALS: Product[] = [
     originalPrice: 299.00,
     rating: 5.0,
     reviewsCount: 19,
-    image: '/src/assets/images/dupet_prod_carrier_1790954107721.jpg',
+    image: prodCarrier,
     description: 'Couro nobre ecológico com zíperes dourados, janelas em malha respirável e almofada interna removível lavável.',
   },
 ];
@@ -133,7 +144,7 @@ export const BEST_SELLERS: Product[] = [
     originalPrice: 189.00,
     rating: 5.0,
     reviewsCount: 412,
-    image: '/src/assets/images/dupet_prod_bed_1790954064241.jpg',
+    image: prodBed,
     isBestSeller: true,
     description: 'A caminha mais amada do Brasil! Borda circular que cria uma sensação imediata de segurança e tranquilidade para cães e gatos.',
   },
@@ -145,7 +156,7 @@ export const BEST_SELLERS: Product[] = [
     price: 68.00,
     rating: 4.9,
     reviewsCount: 298,
-    image: '/src/assets/images/dupet_product_treats_1790943198374.jpg',
+    image: prodTreats,
     isBestSeller: true,
     description: 'Seleção artesanal com petiscos desidratados lentamente: fígado bovino, peito de frango e biscoitos funcionais sem conservantes.',
   },
@@ -157,7 +168,7 @@ export const BEST_SELLERS: Product[] = [
     price: 55.00,
     rating: 4.9,
     reviewsCount: 356,
-    image: '/src/assets/images/dupet_prod_harness_1790954080246.jpg',
+    image: prodHarness,
     isBestSeller: true,
     description: 'Couro macio premium com costuras artesanais. Inclui gravação a laser personalizada do nome do pet e telefone do tutor.',
   },
@@ -170,7 +181,7 @@ export const BEST_SELLERS: Product[] = [
     originalPrice: 110.00,
     rating: 5.0,
     reviewsCount: 221,
-    image: '/src/assets/images/dupet_real_bath_grooming_1790943549692.jpg',
+    image: realBathGrooming,
     isBestSeller: true,
     description: 'Shampoo de aveia e camomila 500ml, máscara de hidratação intensa de argan e escova desembaraçadora ergonômica.',
   },
@@ -182,7 +193,7 @@ export const BEST_SELLERS: Product[] = [
     price: 49.00,
     rating: 4.8,
     reviewsCount: 310,
-    image: '/src/assets/images/dupet_real_taxi_dog_1790943589484.jpg',
+    image: realTaxiDog,
     isBestSeller: true,
     description: 'Trio de pelúcias super macias com apitos internos suaves que mantêm o pet entretido sem fazer barulhos estridentes.',
   },
@@ -194,7 +205,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     quote: 'A qualidade dos produtos e do banho é inigualável! O Barthô nunca teve uma pelagem tão sedosa e cheirosa.',
     author: 'Mariana V.',
     role: 'Tutora do Barthô',
-    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=160&q=80',
+    avatar: realHeroDog,
     rating: 5,
   },
   {
@@ -202,7 +213,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     quote: 'Designs elegantes e um atendimento acolhedor de primeira. A caminha e a bolsa de viagem da Dupet são impecáveis!',
     author: 'Carlos E.',
     role: 'Tutor da Pipoca & Mel',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&q=80',
+    avatar: realTaxiDog,
     rating: 5,
   },
   {
@@ -210,7 +221,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
     quote: 'Mais que um pet shop: uma verdadeira comunidade que ama animais de coração. Recomendo de olhos fechados em Cândido Mota!',
     author: 'Beatriz A.',
     role: 'Tutora da Luna',
-    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=160&q=80',
+    avatar: serviceVet,
     rating: 5,
   },
 ];
