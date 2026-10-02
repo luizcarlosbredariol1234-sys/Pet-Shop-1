@@ -1,0 +1,8 @@
+{
+  "name": "Dupet - Pet Shop",
+  "description": "Pet shop premium em Cândido Mota - SP. Banho e tosa com carinho, consultório veterinário, farmácia pet e produtos de alta qualidade para o seu melhor amigo.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

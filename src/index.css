@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-display: 'Fredoka', cursive, sans-serif;
+    --font-sans: 'Nunito', sans-serif;
+    
+    --color-pepperoni: #E31837;
+    --color-pepperoni-hover: #C5112D;
+    --color-pepperoni-light: #FDE8EB;
+    
+    --color-gold: #D4AF37;
+    --color-gold-hover: #BD9827;
+    --color-gold-light: #FDF9EA;
+    
+    --color-cream: #FFFDF9;
+    --color-cream-subtle: #FAF6F0;
+    --color-cream-card: #FFFFFF;
+    
+    --color-text-main: #2C2424;
+    --color-text-muted: #6B5E5E;
+    
+    --color-dark-bg: #161212;
+    --color-dark-surface: #221B1B;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-cream);
+    color: var(--color-text-main);
+  }
+
+  h1, h2, h3, h4, .font-heading {
+    font-family: var(--font-display);
+  }
+}
+
+.font-fredoka {
+  font-family: 'Fredoka', cursive, sans-serif;
+}
+
+.font-nunito {
+  font-family: 'Nunito', sans-serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF6F0;
+}
+::-webkit-scrollbar-thumb {
+  background: #E3183733;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #E3183766;
+}
+
+/* Subtle paw pattern background */
+.paw-pattern {
+  background-image: radial-gradient(#E318370d 1px, transparent 1px), radial-gradient(#D4AF370d 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: 0 0, 16px 16px;
+}
