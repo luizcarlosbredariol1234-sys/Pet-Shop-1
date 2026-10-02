@@ -1,5 +1,5 @@
-import React from 'react';
-import { Star, Heart, ShoppingBag, ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Star, Heart, ShoppingBag, ArrowRight, Check } from 'lucide-react';
 import { Product } from '../types';
 
 interface ProductShelfProps {
@@ -23,6 +23,16 @@ export const ProductShelf: React.FC<ProductShelfProps> = ({
   onAddToCart,
   onViewAllClick,
 }) => {
+  const [addedIds, setAddedIds] = useState<{ [id: string]: boolean }>({});
+
+  const handleAdd = (product: Product) => {
+    onAddToCart(product);
+    setAddedIds((prev) => ({ ...prev, [product.id]: true }));
+    setTimeout(() => {
+      setAddedIds((prev) => ({ ...prev, [product.id]: false }));
+    }, 1600);
+  };
+
   return (
     <section id={id} className="py-12 bg-white border-b border-[#F0EAE4] font-nunito">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -50,6 +60,7 @@ export const ProductShelf: React.FC<ProductShelfProps> = ({
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
           {products.map((product) => {
             const isFav = wishlist[product.id];
+            const isAdded = addedIds[product.id];
 
             return (
               <div
@@ -119,11 +130,20 @@ export const ProductShelf: React.FC<ProductShelfProps> = ({
                     </span>
 
                     <button
-                      onClick={() => onAddToCart(product)}
+                      onClick={() => handleAdd(product)}
                       aria-label="Adicionar à sacola"
-                      className="w-8 h-8 rounded-lg bg-[#1A1513] hover:bg-[#C5A059] active:bg-[#9E7D39] text-white flex items-center justify-center transition-colors shadow-xs cursor-pointer"
+                      title={isAdded ? 'Adicionado com sucesso!' : 'Adicionar à sacola'}
+                      className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all shadow-xs cursor-pointer ${
+                        isAdded
+                          ? 'bg-emerald-600 text-white scale-105 shadow-sm'
+                          : 'bg-[#1A1513] hover:bg-[#C5A059] active:bg-[#9E7D39] text-white'
+                      }`}
                     >
-                      <ShoppingBag className="w-3.5 h-3.5" />
+                      {isAdded ? (
+                        <Check className="w-4 h-4 stroke-[3]" />
+                      ) : (
+                        <ShoppingBag className="w-3.5 h-3.5" />
+                      )}
                     </button>
                   </div>
                 </div>

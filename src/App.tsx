@@ -4,6 +4,7 @@
  */
 
 import React, { useState } from 'react';
+import { CheckCircle2, ShoppingBag, X } from 'lucide-react';
 import { TopBar } from './components/TopBar';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -24,8 +25,9 @@ export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [wishlist, setWishlist] = useState<{ [id: string]: boolean }>({});
   const [searchQuery, setSearchQuery] = useState('');
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
 
-  // Cart operations
+  // Cart operations: add to cart WITHOUT opening the drawer
   const handleAddToCart = (product: Product) => {
     setCartItems((prev) => {
       const existing = prev.find((item) => item.product.id === product.id);
@@ -38,7 +40,12 @@ export default function App() {
       }
       return [...prev, { product, quantity: 1 }];
     });
-    setIsCartOpen(true);
+
+    // Show temporary feedback toast without opening the cart drawer
+    setToastMessage(`"${product.name}" foi adicionado à sua sacola.`);
+    setTimeout(() => {
+      setToastMessage(null);
+    }, 3200);
   };
 
   const handleUpdateQuantity = (productId: string, delta: number) => {
@@ -115,6 +122,33 @@ export default function App() {
         onSearch={setSearchQuery}
         onCategorySelect={handleCategorySelect}
       />
+
+      {/* Notification Toast when item is added */}
+      {toastMessage && (
+        <div className="fixed top-20 right-4 sm:right-8 z-50 animate-in fade-in slide-in-from-top-4 duration-300">
+          <div className="bg-[#1A1513] text-white px-4 py-3 rounded-xl shadow-xl border border-[#C5A059]/30 flex items-center gap-3 text-xs sm:text-sm">
+            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+            <span className="max-w-[240px] sm:max-w-xs truncate">{toastMessage}</span>
+            <button
+              onClick={() => {
+                setToastMessage(null);
+                setIsCartOpen(true);
+              }}
+              className="text-[#C5A059] hover:underline font-bold whitespace-nowrap ml-1 flex items-center gap-1 cursor-pointer"
+            >
+              <ShoppingBag className="w-3.5 h-3.5" />
+              <span>Ver Sacola</span>
+            </button>
+            <button
+              onClick={() => setToastMessage(null)}
+              aria-label="Fechar aviso"
+              className="text-white/60 hover:text-white ml-1 cursor-pointer"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Main Content Flow matching Reference Layout */}
       <main className="flex-1">
