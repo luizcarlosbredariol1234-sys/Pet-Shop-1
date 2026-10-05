@@ -4,7 +4,7 @@
  */
 
 import React, { useState } from 'react';
-import { CheckCircle2, ShoppingBag, X } from 'lucide-react';
+import { CheckCircle2, ShoppingBag, X, Search, Heart, Star } from 'lucide-react';
 import { TopBar } from './components/TopBar';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -18,7 +18,7 @@ import { Footer } from './components/Footer';
 import { CartDrawer } from './components/CartDrawer';
 import { WhatsAppFloatingButton } from './components/WhatsAppFloatingButton';
 import { AnimatedPawBackground } from './components/AnimatedPawBackground';
-import { NEW_ARRIVALS, BEST_SELLERS } from './data/mockData';
+import { NEW_ARRIVALS, BEST_SELLERS, ALL_PRODUCTS } from './data/mockData';
 import { CartItem, Product } from './types';
 
 export default function App() {
@@ -92,23 +92,34 @@ export default function App() {
     }
   };
 
+  // Robust Search handler
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    if (query.trim()) {
+      setTimeout(() => {
+        const el = document.getElementById('busca-resultados');
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
+    }
+  };
+
   const totalCartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
   const totalWishlistCount = Object.values(wishlist).filter(Boolean).length;
 
-  // Filter products by search term if active
-  const filteredNewArrivals = searchQuery
-    ? NEW_ARRIVALS.filter((p) =>
-        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.categoryLabel.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    : NEW_ARRIVALS;
-
-  const filteredBestSellers = searchQuery
-    ? BEST_SELLERS.filter((p) =>
-        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.categoryLabel.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-    : BEST_SELLERS;
+  // Search Results across all products in catalog
+  const searchResults = searchQuery.trim()
+    ? ALL_PRODUCTS.filter((p) => {
+        const q = searchQuery.toLowerCase().trim();
+        return (
+          p.name.toLowerCase().includes(q) ||
+          p.categoryLabel.toLowerCase().includes(q) ||
+          p.category.toLowerCase().includes(q) ||
+          (p.description?.toLowerCase().includes(q) ?? false)
+        );
+      })
+    : [];
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FAF8F5] relative text-[#241E1C] font-nunito selection:bg-[#C5A059]/20 selection:text-[#1A1513]">
@@ -118,12 +129,14 @@ export default function App() {
       {/* 1. Top Announcement Bar */}
       <TopBar />
 
-      {/* 2. Main Luxury Header */}
+      {/* 2. Main Luxury Header with Instant Search */}
       <Navbar
         cartCount={totalCartCount}
         wishlistCount={totalWishlistCount}
+        searchQuery={searchQuery}
         onOpenCart={() => setIsCartOpen(true)}
-        onSearch={setSearchQuery}
+        onSearch={handleSearch}
+        onAddToCart={handleAddToCart}
         onCategorySelect={handleCategorySelect}
       />
 
@@ -156,6 +169,125 @@ export default function App() {
 
       {/* Main Content Flow: Destaques first, followed by Novidades, then Categorias */}
       <main className="flex-1 relative z-10">
+        {/* Active Search Results Section */}
+        {searchQuery.trim() && (
+          <section id="busca-resultados" className="py-10 bg-white/95 border-b border-[#EDE6E1] font-nunito shadow-xs">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              {/* Search Header */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-[#F0EAE4]">
+                <div>
+                  <div className="flex items-center gap-2">
+                    <Search className="w-5 h-5 text-[#C5A059]" />
+                    <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-[#1A1513]">
+                      Resultados para "{searchQuery}"
+                    </h2>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#706763] mt-1">
+                    {searchResults.length === 1
+                      ? '1 produto encontrado na boutique'
+                      : `${searchResults.length} produtos encontrados na boutique`}
+                  </p>
+                </div>
+
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="flex items-center gap-1.5 text-xs font-bold text-[#706763] hover:text-[#1A1513] bg-[#FAF8F5] hover:bg-[#F5F1EB] px-4 py-2 rounded-full border border-[#EDE6E1] transition-colors cursor-pointer self-start sm:self-auto shadow-2xs"
+                >
+                  <X className="w-4 h-4" />
+                  <span>Limpar busca e ver tudo</span>
+                </button>
+              </div>
+
+              {/* Grid of Results */}
+              {searchResults.length > 0 ? (
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5">
+                  {searchResults.map((product) => {
+                    const isFav = wishlist[product.id];
+                    return (
+                      <div
+                        key={product.id}
+                        className="bg-[#FAF8F5] rounded-xl border border-[#EDE6E1] p-3 sm:p-4 flex flex-col justify-between group hover:border-[#C5A059]/50 hover:shadow-md transition-all duration-300 relative"
+                      >
+                        {/* Top badges & Heart */}
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="text-[10px] font-bold text-[#706763] uppercase tracking-wider">
+                            {product.categoryLabel}
+                          </span>
+                          <button
+                            onClick={() => handleToggleWishlist(product.id)}
+                            className="p-1 text-[#A89E99] hover:text-red-500 transition-colors cursor-pointer"
+                          >
+                            <Heart className={`w-4 h-4 ${isFav ? 'fill-red-500 text-red-500' : ''}`} />
+                          </button>
+                        </div>
+
+                        {/* Image */}
+                        <div className="aspect-square w-full rounded-lg bg-white overflow-hidden p-2 flex items-center justify-center mb-3">
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform"
+                          />
+                        </div>
+
+                        {/* Details */}
+                        <div>
+                          <h3 className="text-xs sm:text-sm font-semibold text-[#241E1C] line-clamp-2 leading-snug group-hover:text-[#C5A059] transition-colors mb-1.5 min-h-[36px]">
+                            {product.name}
+                          </h3>
+
+                          {/* Star rating */}
+                          <div className="flex items-center gap-1 mb-2">
+                            <div className="flex text-[#C5A059]">
+                              {[...Array(5)].map((_, i) => (
+                                <Star key={i} className="w-3 h-3 fill-current" />
+                              ))}
+                            </div>
+                            <span className="text-[11px] text-[#706763]">({product.reviewsCount})</span>
+                          </div>
+
+                          <div className="flex items-center justify-between pt-1">
+                            <span className="font-playfair text-base sm:text-lg font-bold text-[#1A1513]">
+                              R$ {product.price.toFixed(2).replace('.', ',')}
+                            </span>
+                            <button
+                              onClick={() => handleAddToCart(product)}
+                              className="w-8 h-8 rounded-lg bg-[#1A1513] hover:bg-[#C5A059] text-white flex items-center justify-center transition-colors cursor-pointer shadow-xs"
+                              title="Adicionar à sacola"
+                            >
+                              <ShoppingBag className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                <div className="text-center py-12 px-4 bg-[#FAF8F5] rounded-2xl border border-dashed border-[#EDE6E1]">
+                  <p className="text-base font-bold text-[#241E1C] mb-2">
+                    Nenhum produto encontrado para "{searchQuery}"
+                  </p>
+                  <p className="text-xs text-[#706763] mb-6 max-w-md mx-auto">
+                    Não encontramos itens exatos com esse termo. Tente uma das opções populares abaixo para ver produtos em destaque:
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-2">
+                    {['Caminha', 'Ração', 'Petiscos', 'Coleira', 'Arranhador', 'Tigela', 'Shampoo'].map((tag) => (
+                      <button
+                        key={tag}
+                        onClick={() => handleSearch(tag)}
+                        className="text-xs bg-white hover:bg-[#C5A059] hover:text-white text-[#241E1C] px-3.5 py-1.5 rounded-full border border-[#EDE6E1] font-semibold transition-colors cursor-pointer shadow-2xs"
+                      >
+                        {tag}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
+
         {/* 3. Hero Section: "Eles são Família" + Dog & Cat in Bed */}
         <Hero onShopClick={scrollToShelf} />
 
@@ -164,7 +296,7 @@ export default function App() {
           id="destaques"
           title="Produtos em Destaque"
           subtitle="Os favoritos mais desejados e recomendados pelos tutores mais exigentes."
-          products={filteredBestSellers}
+          products={BEST_SELLERS}
           wishlist={wishlist}
           onToggleWishlist={handleToggleWishlist}
           onAddToCart={handleAddToCart}
@@ -176,7 +308,7 @@ export default function App() {
           id="novidades"
           title="Novidades da Boutique"
           subtitle="Achados elegantes e exclusivos para pets com estilo."
-          products={filteredNewArrivals}
+          products={NEW_ARRIVALS}
           wishlist={wishlist}
           onToggleWishlist={handleToggleWishlist}
           onAddToCart={handleAddToCart}

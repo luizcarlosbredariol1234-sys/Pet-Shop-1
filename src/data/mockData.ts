@@ -199,6 +199,61 @@ export const BEST_SELLERS: Product[] = [
   },
 ];
 
+export const ADDITIONAL_CATALOG: Product[] = [
+  {
+    id: 'cat-1',
+    name: 'Ração Super Premium Salmão & Batata Doce 3kg',
+    category: 'alimentos',
+    categoryLabel: 'Alimentos & Rações',
+    price: 149.00,
+    originalPrice: 169.00,
+    rating: 5.0,
+    reviewsCount: 88,
+    image: prodTreats,
+    description: 'Fórmula nobre sem transgênicos ou corantes artificiais. Rica em ômega 3 e 6 para pelagem radiante e digestão equilibrada.',
+  },
+  {
+    id: 'cat-2',
+    name: 'Fonte de Água Automática Inox Silenciosa 2.5L',
+    category: 'comedouros',
+    categoryLabel: 'Comedouros & Tigelas',
+    price: 129.00,
+    rating: 4.9,
+    reviewsCount: 64,
+    image: prodBowls,
+    description: 'Filtro quádruplo de carvão ativado com bomba ultrassilenciosa. Estimula cães e gatos a beberem mais água fresca.',
+  },
+  {
+    id: 'cat-3',
+    name: 'Arranhador Torre com Casinha & Rede para Gatos',
+    category: 'gatos',
+    categoryLabel: 'Mimos para Gatos',
+    price: 199.00,
+    originalPrice: 239.00,
+    rating: 4.9,
+    reviewsCount: 42,
+    image: prodBed,
+    description: 'Postes em sisal natural com pelúcia de toque aveludado. Área para afiar as unhas, descansar na rede e explorar.',
+  },
+  {
+    id: 'cat-4',
+    name: 'Shampoo Neutro Hidratante Óleo de Coco & Camomila',
+    category: 'banho',
+    categoryLabel: 'Banho & Cuidados',
+    price: 52.00,
+    rating: 4.8,
+    reviewsCount: 53,
+    image: realBathGrooming,
+    description: 'Fórmula suave com pH balanceado para pele sensível de cães e gatos. Deixa os pelos sedosos, soltinhos e perfumados.',
+  },
+];
+
+export const ALL_PRODUCTS: Product[] = [
+  ...BEST_SELLERS,
+  ...NEW_ARRIVALS,
+  ...ADDITIONAL_CATALOG,
+];
+
 export const TESTIMONIALS_DATA: Testimonial[] = [
   {
     id: 'test-1',

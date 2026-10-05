@@ -27,7 +27,7 @@ export const Footer: React.FC = () => {
                   e.currentTarget.src = '/assets/images/logo_icon_white.png';
                 }}
                 alt="Logo Boutique Pet"
-                className="h-14 sm:h-16 w-auto object-contain"
+                className="h-16 sm:h-18 w-auto object-contain"
                 referrerPolicy="no-referrer"
               />
             </div>
