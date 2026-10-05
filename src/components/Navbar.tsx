@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Search, User, Heart, ShoppingBag, Menu, X, Crown } from 'lucide-react';
 import { BUSINESS_INFO } from '../data/mockData';
+import logoIcon from '../assets/images/logo_icon_transparent.png';
 
 interface NavbarProps {
   cartCount: number;
@@ -40,22 +41,36 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header className="bg-white border-b border-[#EDE6E1] sticky top-0 z-40 shadow-2xs font-nunito">
       {/* Row 1: Brand Logo, Central Search, User Actions */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2.5 sm:py-3">
         <div className="flex items-center justify-between gap-4">
-          {/* Brand Logo with Crown */}
+          {/* Brand Logo with Boutique Pet + Logo Icon (No text below) + Slogan */}
           <a
             href="#inicio"
+            aria-label="Boutique Pet - Início"
             className="flex flex-col items-center sm:items-start group focus-visible:outline-none"
           >
+            {/* 1. Boutique Pet (do jeito que estava) */}
             <div className="flex items-center gap-1.5 text-[#C5A059]">
-              <Crown className="w-4 h-4 fill-current" />
+              <Crown className="w-3.5 h-3.5 fill-current" />
               <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#706763]">
                 Boutique Pet
               </span>
             </div>
-            <span className="font-playfair text-2xl sm:text-3xl font-bold tracking-tight text-[#1A1513] group-hover:text-[#C5A059] transition-colors leading-none mt-0.5">
-              Dupet
-            </span>
+
+            {/* 2. Aqui a logo (somente a logo, sem frase embaixo) */}
+            <div className="my-1 flex items-center justify-center">
+              <img
+                src={logoIcon}
+                onError={(e) => {
+                  e.currentTarget.src = '/assets/images/logo_icon_transparent.png';
+                }}
+                alt="Logo Pet Care"
+                className="h-12 sm:h-14 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-2xs"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+
+            {/* 3. O cuidado que seu pet merece. */}
             <span className="text-[8px] sm:text-[9px] font-semibold tracking-[0.2em] uppercase text-[#A89E99]">
               O Cuidado que seu Pet Merece
             </span>
@@ -79,7 +94,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               type="submit"
               aria-label="Buscar"
-              className="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#1A1513] text-white flex items-center justify-center hover:bg-[#C5A059] transition-colors"
+              className="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#1A1513] text-white flex items-center justify-center hover:bg-[#C5A059] transition-colors cursor-pointer"
             >
               <Search className="w-3.5 h-3.5" />
             </button>
@@ -112,7 +127,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={onOpenCart}
               aria-label="Abrir sacola de compras"
-              className="flex items-center gap-1.5 text-[#1A1513] hover:text-[#C5A059] transition-colors relative"
+              className="flex items-center gap-1.5 text-[#1A1513] hover:text-[#C5A059] transition-colors relative cursor-pointer"
             >
               <div className="relative">
                 <ShoppingBag className="w-5 h-5" />
@@ -129,7 +144,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Abrir menu"
-              className="md:hidden p-1.5 text-[#1A1513] hover:text-[#C5A059]"
+              className="md:hidden p-1.5 text-[#1A1513] hover:text-[#C5A059] cursor-pointer"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -158,7 +173,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         </form>
       </div>
 
-      {/* Row 2: Category Navigation Menu (Matching the reference layout) */}
+      {/* Row 2: Category Navigation Menu */}
       <div className="hidden md:block border-t border-[#EDE6E1] bg-[#FAF8F5]/80">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex items-center justify-center gap-7 lg:gap-9 py-2.5">
@@ -166,7 +181,7 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 key={item.id}
                 onClick={() => onCategorySelect(item.id)}
-                className="text-xs font-semibold text-[#574E49] hover:text-[#C5A059] transition-colors relative py-0.5 whitespace-nowrap focus:outline-none"
+                className="text-xs font-semibold text-[#574E49] hover:text-[#C5A059] transition-colors relative py-0.5 whitespace-nowrap focus:outline-none cursor-pointer"
               >
                 {item.label}
               </button>
@@ -185,7 +200,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 onCategorySelect(item.id);
                 setMobileMenuOpen(false);
               }}
-              className="block w-full text-left py-2 text-sm font-semibold text-[#3D3531] hover:text-[#C5A059] border-b border-[#F5F1EB] last:border-none"
+              className="block w-full text-left py-2 text-sm font-semibold text-[#3D3531] hover:text-[#C5A059] border-b border-[#F5F1EB] last:border-none cursor-pointer"
             >
               {item.label}
             </button>

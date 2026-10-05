@@ -57,3 +57,43 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #C5A05988;
 }
+
+/* Animated Paw Background Animations */
+@keyframes pawDrift {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 120px 120px;
+  }
+}
+
+@keyframes floatPawUp {
+  0% {
+    transform: translate3d(0, 105vh, 0) rotate(var(--initial-rot, 0deg));
+    opacity: 0;
+  }
+  12% {
+    opacity: var(--paw-opacity, 0.35);
+  }
+  85% {
+    opacity: var(--paw-opacity, 0.35);
+  }
+  100% {
+    transform: translate3d(0, -12vh, 0) rotate(calc(var(--initial-rot, 0deg) + 35deg));
+    opacity: 0;
+  }
+}
+
+@keyframes pawSway {
+  0%, 100% {
+    margin-left: -15px;
+  }
+  50% {
+    margin-left: 15px;
+  }
+}
+
+.animate-paw-drift {
+  animation: pawDrift 14s linear infinite;
+}

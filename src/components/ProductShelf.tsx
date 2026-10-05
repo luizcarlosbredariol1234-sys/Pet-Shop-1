@@ -34,7 +34,7 @@ export const ProductShelf: React.FC<ProductShelfProps> = ({
   };
 
   return (
-    <section id={id} className="py-12 bg-white border-b border-[#F0EAE4] font-nunito">
+    <section id={id} className="py-12 bg-white/85 backdrop-blur-2xs border-b border-[#F0EAE4] font-nunito">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Shelf Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-8">
@@ -112,13 +112,13 @@ export const ProductShelf: React.FC<ProductShelfProps> = ({
                   </h3>
 
                   {/* Rating Stars & Count */}
-                  <div className="flex items-center gap-1 mb-2">
-                    <div className="flex text-[#C5A059]">
+                  <div className="flex items-center gap-1.5 mb-2.5">
+                    <div className="flex text-[#C5A059] gap-0.5">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-3 h-3 fill-current" />
+                        <Star key={i} className="w-3.5 h-3.5 fill-current" />
                       ))}
                     </div>
-                    <span className="text-[11px] text-[#706763] font-medium">
+                    <span className="text-xs text-[#574E49] font-semibold">
                       ({product.reviewsCount})
                     </span>
                   </div>

@@ -48,7 +48,7 @@ export const HeritageBanner: React.FC<HeritageBannerProps> = ({ onExploreClick }
             </span>
 
             <h2 className="font-playfair text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight text-white mb-4">
-              A Coleção Heritage Dupet
+              A Coleção Heritage
             </h2>
 
             <p className="text-sm sm:text-base text-[#D0C6C0] leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">

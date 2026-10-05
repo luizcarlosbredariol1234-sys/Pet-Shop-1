@@ -1,6 +1,7 @@
 import React from 'react';
 import { Crown, Instagram, Facebook, Heart, MapPin, Phone } from 'lucide-react';
 import { BUSINESS_INFO } from '../data/mockData';
+import logoIconWhite from '../assets/images/logo_icon_white.png';
 
 export const Footer: React.FC = () => {
   return (
@@ -10,16 +11,28 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
           {/* Col 1: Brand & Slogan (4 cols) */}
           <div className="lg:col-span-4">
-            <div className="flex items-center gap-1.5 text-[#C5A059] mb-2">
-              <Crown className="w-5 h-5 fill-current" />
+            {/* 1. Boutique Pet (do jeito que estava) */}
+            <div className="flex items-center gap-1.5 text-[#C5A059] mb-1.5">
+              <Crown className="w-4 h-4 fill-current" />
               <span className="text-[10px] font-bold tracking-[0.25em] uppercase text-[#A89E99]">
                 Boutique Pet
               </span>
             </div>
 
-            <h3 className="font-playfair text-3xl font-bold tracking-tight text-white mb-1">
-              Dupet
-            </h3>
+            {/* 2. Aqui a logo (somente a logo, sem frase em baixo) */}
+            <div className="my-2">
+              <img
+                src={logoIconWhite}
+                onError={(e) => {
+                  e.currentTarget.src = '/assets/images/logo_icon_white.png';
+                }}
+                alt="Logo Boutique Pet"
+                className="h-14 sm:h-16 w-auto object-contain"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+
+            {/* 3. O Cuidado que seu Pet Merece */}
             <p className="text-[10px] tracking-[0.25em] uppercase text-[#C5A059] font-semibold mb-4">
               O Cuidado que seu Pet Merece
             </p>
@@ -96,7 +109,7 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-2 flex flex-col justify-between">
             <div>
               <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-4">
-                Siga a Dupet
+                Redes Sociais
               </h4>
               <div className="flex items-center gap-3 text-white/80">
                 <a
@@ -124,7 +137,7 @@ export const Footer: React.FC = () => {
 
         {/* Bottom row */}
         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-[#857B75]">
-          <p>© {new Date().getFullYear()} Dupet Pet Shop. Todos os direitos reservados. Cândido Mota - SP.</p>
+          <p>© {new Date().getFullYear()} Boutique Pet. Todos os direitos reservados. Cândido Mota - SP.</p>
           <div className="flex items-center gap-1.5 text-[#C5A059]">
             <span>Pets. Pessoas. Um Amanhã Mais Feliz.</span>
             <Heart className="w-3 h-3 fill-current" />

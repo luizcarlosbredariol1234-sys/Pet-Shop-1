@@ -37,7 +37,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
   const handleCheckoutWhatsApp = () => {
     if (items.length === 0) return;
 
-    let message = `🐾 *NOVO PEDIDO - DUPET PET SHOP*\n\n`;
+    let message = `🐾 *NOVO PEDIDO - BOUTIQUE PET*\n\n`;
     message += `👤 *Tutor(a):* ${tutorName || 'Cliente'}\n`;
     if (petName) message += `🐶 *Pet:* ${petName}\n`;
     message += `🚚 *Modalidade:* ${deliveryType === 'entrega' ? `Entrega em Cândido Mota (${neighborhood || 'Centro'})` : 'Retirada na Loja'}\n\n`;

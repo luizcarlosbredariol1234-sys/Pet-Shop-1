@@ -17,6 +17,7 @@ import { NewsletterClub } from './components/NewsletterClub';
 import { Footer } from './components/Footer';
 import { CartDrawer } from './components/CartDrawer';
 import { WhatsAppFloatingButton } from './components/WhatsAppFloatingButton';
+import { AnimatedPawBackground } from './components/AnimatedPawBackground';
 import { NEW_ARRIVALS, BEST_SELLERS } from './data/mockData';
 import { CartItem, Product } from './types';
 
@@ -78,14 +79,14 @@ export default function App() {
   };
 
   const scrollToShelf = () => {
-    const el = document.getElementById('novidades');
+    const el = document.getElementById('destaques');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   const handleCategorySelect = (categoryId: string) => {
-    const el = document.getElementById('mais-vendidos');
+    const el = document.getElementById('destaques');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
     }
@@ -110,7 +111,10 @@ export default function App() {
     : BEST_SELLERS;
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-[#241E1C] font-nunito selection:bg-[#C5A059]/20 selection:text-[#1A1513]">
+    <div className="min-h-screen flex flex-col bg-[#FAF8F5] relative text-[#241E1C] font-nunito selection:bg-[#C5A059]/20 selection:text-[#1A1513]">
+      {/* Animated Subtle Paw Background Layer across entire site */}
+      <AnimatedPawBackground />
+
       {/* 1. Top Announcement Bar */}
       <TopBar />
 
@@ -126,23 +130,23 @@ export default function App() {
       {/* Notification Toast when item is added */}
       {toastMessage && (
         <div className="fixed top-20 right-4 sm:right-8 z-50 animate-in fade-in slide-in-from-top-4 duration-300">
-          <div className="bg-[#1A1513] text-white px-4 py-3 rounded-xl shadow-xl border border-[#C5A059]/30 flex items-center gap-3 text-xs sm:text-sm">
-            <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-            <span className="max-w-[240px] sm:max-w-xs truncate">{toastMessage}</span>
+          <div className="bg-[#1A1513] text-white px-5 py-3.5 rounded-xl shadow-2xl border border-[#C5A059]/40 flex items-center gap-3 text-sm sm:text-base font-medium">
+            <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+            <span className="max-w-[260px] sm:max-w-sm truncate">{toastMessage}</span>
             <button
               onClick={() => {
                 setToastMessage(null);
                 setIsCartOpen(true);
               }}
-              className="text-[#C5A059] hover:underline font-bold whitespace-nowrap ml-1 flex items-center gap-1 cursor-pointer"
+              className="text-[#C5A059] hover:underline font-bold whitespace-nowrap ml-2 flex items-center gap-1.5 cursor-pointer text-sm sm:text-base"
             >
-              <ShoppingBag className="w-3.5 h-3.5" />
+              <ShoppingBag className="w-4 h-4" />
               <span>Ver Sacola</span>
             </button>
             <button
               onClick={() => setToastMessage(null)}
               aria-label="Fechar aviso"
-              className="text-white/60 hover:text-white ml-1 cursor-pointer"
+              className="text-white/60 hover:text-white ml-1 cursor-pointer p-1"
             >
               <X className="w-4 h-4" />
             </button>
@@ -150,15 +154,24 @@ export default function App() {
         </div>
       )}
 
-      {/* Main Content Flow matching Reference Layout */}
-      <main className="flex-1">
+      {/* Main Content Flow: Destaques first, followed by Novidades, then Categorias */}
+      <main className="flex-1 relative z-10">
         {/* 3. Hero Section: "Eles são Família" + Dog & Cat in Bed */}
         <Hero onShopClick={scrollToShelf} />
 
-        {/* 4. Shop by Category: 9 Circular Avatars */}
-        <ShopByCategory onSelectCategory={handleCategorySelect} />
+        {/* 4. Destaques da Boutique (Primeiro os produtos em destaque!) */}
+        <ProductShelf
+          id="destaques"
+          title="Produtos em Destaque"
+          subtitle="Os favoritos mais desejados e recomendados pelos tutores mais exigentes."
+          products={filteredBestSellers}
+          wishlist={wishlist}
+          onToggleWishlist={handleToggleWishlist}
+          onAddToCart={handleAddToCart}
+          onViewAllClick={scrollToShelf}
+        />
 
-        {/* 5. New Arrivals (5 products row) */}
+        {/* 5. Novidades da Boutique */}
         <ProductShelf
           id="novidades"
           title="Novidades da Boutique"
@@ -170,17 +183,8 @@ export default function App() {
           onViewAllClick={scrollToShelf}
         />
 
-        {/* 6. Best Sellers (5 products row) */}
-        <ProductShelf
-          id="mais-vendidos"
-          title="Os Mais Vendidos"
-          subtitle="Amados pelos pets e recomendados pelos tutores mais exigentes."
-          products={filteredBestSellers}
-          wishlist={wishlist}
-          onToggleWishlist={handleToggleWishlist}
-          onAddToCart={handleAddToCart}
-          onViewAllClick={scrollToShelf}
-        />
+        {/* 6. Compre por Categoria (Catálogo completo por setor) */}
+        <ShopByCategory onSelectCategory={handleCategorySelect} />
 
         {/* 7. Featured Banner: The Heritage Collection */}
         <HeritageBanner onExploreClick={scrollToShelf} />
@@ -191,7 +195,7 @@ export default function App() {
         {/* 9. 4-Column Value Proposition Bar */}
         <ValueProps />
 
-        {/* 10. Newsletter / Club Dupet */}
+        {/* 10. Newsletter / Club */}
         <NewsletterClub />
       </main>
 

@@ -1,18 +1,18 @@
 import React from 'react';
-import { Star } from 'lucide-react';
+import { Star, Quote } from 'lucide-react';
 import { TESTIMONIALS_DATA } from '../data/mockData';
 
 export const RealStories: React.FC = () => {
   return (
-    <section id="depoimentos" className="py-14 sm:py-18 bg-[#FAF8F5] border-b border-[#F0EAE4] font-nunito">
+    <section id="depoimentos" className="py-16 sm:py-20 bg-[#FAF8F5]/85 backdrop-blur-2xs border-b border-[#F0EAE4] font-nunito">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="font-playfair text-2xl sm:text-3xl font-bold text-[#1A1513]">
+        <div className="text-center max-w-2xl mx-auto mb-12 sm:mb-14">
+          <h2 className="font-playfair text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1A1513]">
             Histórias Reais, Amor de Verdade
           </h2>
-          <p className="text-xs sm:text-sm text-[#706763] mt-1.5">
-            Da nossa comunidade apaixonada por pets em Cândido Mota e região.
+          <p className="text-sm sm:text-base text-[#574E49] mt-2">
+            Avaliações e depoimentos da nossa comunidade apaixonada por pets em Cândido Mota e região.
           </p>
         </div>
 
@@ -21,39 +21,44 @@ export const RealStories: React.FC = () => {
           {TESTIMONIALS_DATA.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-2xl p-6 sm:p-7 border border-[#EDE6E1] shadow-2xs hover:shadow-md transition-shadow flex items-start gap-4"
+              className="bg-white rounded-2xl p-6 sm:p-8 border border-[#EDE6E1] shadow-2xs hover:shadow-md transition-shadow flex flex-col justify-between"
             >
-              {/* Circular Avatar */}
-              <div className="w-16 h-16 rounded-full overflow-hidden shrink-0 border-2 border-[#C5A059]/40 bg-[#FAF8F5]">
-                <img
-                  src={item.avatar}
-                  alt={item.author}
-                  className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-
-              {/* Quote & Stars */}
-              <div className="flex-1">
-                <p className="text-xs sm:text-sm text-[#3D3531] italic leading-relaxed mb-3 font-serif">
-                  "{item.quote}"
-                </p>
-
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-xs font-bold text-[#1A1513]">
-                      — {item.author}
-                    </h3>
-                    <p className="text-[10px] text-[#A89E99]">
-                      {item.role}
-                    </p>
-                  </div>
-
-                  <div className="flex text-[#C5A059]">
+              <div>
+                {/* 5 Stars and Quote icon */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex text-[#C5A059] gap-0.5">
                     {[...Array(item.rating)].map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-current" />
+                      <Star key={i} className="w-4 h-4 fill-current" />
                     ))}
                   </div>
+                  <Quote className="w-6 h-6 text-[#C5A059]/25 shrink-0" />
+                </div>
+
+                {/* Quote Text - Enhanced legibility & font size */}
+                <p className="text-base sm:text-[17px] text-[#241E1C] leading-relaxed mb-6 font-nunito font-normal">
+                  "{item.quote}"
+                </p>
+              </div>
+
+              {/* Author & Avatar */}
+              <div className="flex items-center gap-3.5 pt-4 border-t border-[#F5F1EB]">
+                {/* Circular Avatar */}
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden shrink-0 border-2 border-[#C5A059]/50 bg-[#FAF8F5] shadow-xs">
+                  <img
+                    src={item.avatar}
+                    alt={item.author}
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+
+                <div>
+                  <h3 className="text-sm sm:text-base font-bold text-[#1A1513] leading-snug">
+                    {item.author}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#706763] font-medium mt-0.5">
+                    {item.role}
+                  </p>
                 </div>
               </div>
             </div>

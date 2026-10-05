@@ -9,7 +9,7 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onShopClick }) => {
   return (
-    <section id="inicio" className="bg-[#FAF8F5] pt-6 sm:pt-10 pb-12 sm:pb-16 overflow-hidden">
+    <section id="inicio" className="bg-[#FAF8F5]/80 backdrop-blur-2xs pt-6 sm:pt-10 pb-12 sm:pb-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           {/* Column 1: Copywriting & Value Propositions (5 cols) */}
@@ -113,7 +113,7 @@ export const Hero: React.FC<HeroProps> = ({ onShopClick }) => {
                   </span>
                 </div>
                 <span className="hidden sm:inline text-[10px] tracking-widest text-[#E5DFD9] uppercase font-bold">
-                  Dupet Boutique
+                  Boutique Pet
                 </span>
               </div>
             </div>

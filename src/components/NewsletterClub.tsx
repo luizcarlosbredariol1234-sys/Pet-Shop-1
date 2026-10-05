@@ -36,7 +36,7 @@ export const NewsletterClub: React.FC = () => {
           {/* Center: Subscription Form (5 cols) */}
           <div className="lg:col-span-5 text-center lg:text-left">
             <h3 className="font-playfair text-2xl sm:text-3xl font-bold text-[#1A1513] mb-2">
-              Faça Parte da Família Dupet
+              Faça Parte da Nossa Família
             </h3>
             <p className="text-xs sm:text-sm text-[#706763] mb-6">
               Receba mimos exclusivos, avisos de novidades da boutique e dicas veterinárias selecionadas.
@@ -45,7 +45,7 @@ export const NewsletterClub: React.FC = () => {
             {submitted ? (
               <div className="p-3.5 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-800 flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>Obrigado! Você já faz parte do Clube VIP Dupet.</span>
+                <span>Obrigado! Você já faz parte do Clube VIP Boutique Pet.</span>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto lg:mx-0">

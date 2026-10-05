@@ -12,8 +12,8 @@ import prodCarrier from '../assets/images/dupet_prod_carrier_1790954107721.jpg';
 import prodTreats from '../assets/images/dupet_product_treats_1790943198374.jpg';
 
 export const BUSINESS_INFO = {
-  name: 'Dupet',
-  fullName: 'Dupet - Boutique & Pet Care',
+  name: 'Boutique Pet',
+  fullName: 'Boutique Pet - O Cuidado que seu Pet Merece',
   tagline: 'Onde o luxo e o amor convivem com seu melhor amigo',
   phone: '(18) 99665-0787',
   whatsappRaw: '5518996650787',
@@ -100,7 +100,7 @@ export const NEW_ARRIVALS: Product[] = [
   },
   {
     id: 'new-3',
-    name: 'Conjunto Duplo Tigelas Cerâmica Dupet',
+    name: 'Conjunto Duplo Tigelas Cerâmica Luxo',
     category: 'comedouros',
     categoryLabel: 'Comedouros & Tigelas',
     price: 79.00,
@@ -210,7 +210,7 @@ export const TESTIMONIALS_DATA: Testimonial[] = [
   },
   {
     id: 'test-2',
-    quote: 'Designs elegantes e um atendimento acolhedor de primeira. A caminha e a bolsa de viagem da Dupet são impecáveis!',
+    quote: 'Designs elegantes e um atendimento acolhedor de primeira. A caminha e a bolsa de viagem da PawFusion são impecáveis!',
     author: 'Carlos E.',
     role: 'Tutor da Pipoca & Mel',
     avatar: realTaxiDog,
